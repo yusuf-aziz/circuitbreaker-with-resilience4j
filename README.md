@@ -73,7 +73,7 @@ http://localhost:8090/order?orderItem=pizza&amount=2.4&customerId=test
 **Response:**
 {"orderDesc":"Payment failed, please try after sometime"}
 
-#### Congratulations! The circuit breaker is working. Instead of getting an internal server error, we received a message from the fallback method we set up.
+### Congratulations! The circuit breaker is working. Instead of getting an internal server error, we received a message from the fallback method we set up.
 
 ```
 @GetMapping("/order")
