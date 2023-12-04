@@ -58,5 +58,42 @@ java -jar payment-service-0.0.1-SNAPSHOT.jar
 
 ```
 http://localhost:8090/order?orderItem=pizza&amount=2.4&customerId=test
+
 ```
+**Response:**
+{"orderDesc":"Order for the item pizza has been processed with order-id f672e1e1-780b-4e43-aaa0-9c3e33a4c160"}
+
+
+## Let's close the Payement-Service and try the same endpoint in browser
+
+```
+http://localhost:8090/order?orderItem=pizza&amount=2.4&customerId=test
+
+```
+**Response:**
+{"orderDesc":"Payment failed, please try after sometime"}
+
+Congratulations! The circuit breaker is working. Instead of getting an internal server error, we received a message from the fallback method we set up.
+
+```
+@GetMapping("/order")
+	@CircuitBreaker(name = "payment-circuit-breaker", fallbackMethod = "paymentCircuitBreaker")
+	public Order getOrder(@RequestParam String orderItem, @RequestParam Float amount, String customerId) {
+		log.info("Order received.");
+		ResponseEntity<String> response = restTemplate
+				.getForEntity("http://PAYMENT-SERVICE/payment?amount=" + amount.floatValue(), String.class);
+		log.info(response.getBody());
+		orderService.processOrder(orderItem, amount, customerId);
+		return new Order(String.format("Order for the item %s has been processed with order-id %s", orderItem,
+				UUID.randomUUID()));
+	}
+
+	public Order paymentCircuitBreaker(String orderItem, Float amount, String customerId, Throwable t) {
+		return new Order("Payment failed, please try after sometime");
+	}
+```
+
+**Please note, the fallback method must return the same type as the original method and have same method signature. Otherwise, the FallbackExecutor won't locate a compatible fallback method and will throw a NoSuchMethodException.**
+
+
 
