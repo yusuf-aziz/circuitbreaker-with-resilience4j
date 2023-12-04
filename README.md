@@ -23,12 +23,12 @@ Imagine if our payment service encounters an issue. How should our system respon
 1. Clone this repository:
 
 ```
-git clone https://github.com/yusuf-aziz/observability-with-micrometer-and-zipkin.git
+git clone https://github.com/yusuf-aziz/circuitbreaker-with-resilience4j.git
 ```
 2. Navigate to the cloned repository:
 
 ```
-cd observability-with-micrometer-and-zipkin
+cd circuitbreaker-with-resilience4j
 ```
 3. Run mvn clean install:
 
