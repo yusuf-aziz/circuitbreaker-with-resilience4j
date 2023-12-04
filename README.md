@@ -1,13 +1,13 @@
 # Circuitbreaker with resilience4j
 **Resilience4j's** Circuit Breaker - a powerful library that protects our application from potential failures!
 
-##What's It All About?
+## What's It All About?
 
 - **Circuit Breaker Magic:** Imagine a Circuit Breaker like the one in our home - it stops the flow of electricity during an overload. Resilience4j's Circuit Breaker does the same for our code, preventing system failures during service outages.
 
 - **How It Works:** This tool monitors external services and stops sending requests when they're acting up. This helps prevent the entire system from crashing, giving it time to recover.
 
-##Why Use Resilience4j's Circuit Breaker?
+## Why Use Resilience4j's Circuit Breaker?
 
 - **Boost Reliability:** Prevents system-wide failures when services misbehave, ensuring our app remains stable.
 
