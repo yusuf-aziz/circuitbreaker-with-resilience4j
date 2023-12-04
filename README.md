@@ -51,8 +51,12 @@ java -jar order-service-0.0.1-SNAPSHOT.jar
 ```
 java -jar payment-service-0.0.1-SNAPSHOT.jar
 ```
+
+![alt text](https://github.com/yusuf-aziz/circuitbreaker-with-resilience4j/blob/main/eureka-server-img.png?raw=true)
+
 7. Open a web browser and try:
 
 ```
 http://localhost:8090/order?orderItem=pizza&amount=2.4&customerId=test
 ```
+
